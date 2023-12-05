@@ -1,0 +1,14 @@
+rootProject.name = 'ms-movies'
+
+include ':app-service'
+project(':app-service').projectDir = file('./applications/app-service')
+include ':model'
+project(':model').projectDir = file('./domain/model')
+include ':usecase'
+project(':usecase').projectDir = file('./domain/usecase')
+include ':reactive-web'
+project(':reactive-web').projectDir = file('./infrastructure/entry-points/reactive-web')
+include ':rest-consumer'
+project(':rest-consumer').projectDir = file('./infrastructure/driven-adapters/rest-consumer')
+include ':h2-repository'
+project(':h2-repository').projectDir = file('./infrastructure/driven-adapters/h2-repository')

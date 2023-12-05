@@ -1,0 +1,25 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: ms-movies
+  devtools:
+    add-properties: false
+  r2dbc:
+    url: r2dbc:h2:mem:///theater;DB_CLOSE_DELAY=-1
+    username: sa
+    password:
+  flyway:
+    url: jdbc:h2:mem:theater;DB_CLOSE_DELAY=-1
+    locations: classpath:db/h2/migration
+  jpa:
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+logging:
+  level:
+    root: INFO

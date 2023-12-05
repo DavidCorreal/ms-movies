@@ -1,0 +1,42 @@
+allprojects {
+    repositories {
+        maven {
+            url "https://repo.maven.apache.org/maven2/"
+        }
+    }
+}
+
+subprojects {
+    apply plugin: 'java'
+    apply plugin: 'io.spring.dependency-management'
+
+    sourceCompatibility = JavaVersion.VERSION_17
+    compileTestJava.options.encoding = 'UTF-8'
+
+    dependencies {
+        implementation 'io.projectreactor:reactor-core'
+        implementation 'io.projectreactor.addons:reactor-extra'
+
+        testImplementation 'io.projectreactor:reactor-test'
+        testImplementation "org.springframework.boot:spring-boot-starter-test:${springBootVersion}"
+        compileOnly "org.projectlombok:lombok:${lombokVersion}"
+        annotationProcessor  "org.projectlombok:lombok:${lombokVersion}"
+        testCompileOnly  "org.projectlombok:lombok:${lombokVersion}"
+        testAnnotationProcessor  "org.projectlombok:lombok:${lombokVersion}"
+        implementation platform("org.springframework.boot:spring-boot-dependencies:${springBootVersion}")
+    }
+
+    dependencyManagement {
+        imports {
+            mavenBom "org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}"
+            mavenBom "com.fasterxml.jackson:jackson-bom:${jacksonVersion}"
+        }
+        dependencies {
+            dependency "org.springdoc:springdoc-openapi-starter-webflux-ui:$springDocVersion"
+        }
+    }
+}
+
+tasks.named('wrapper') {
+    gradleVersion = '7.6.1'
+}

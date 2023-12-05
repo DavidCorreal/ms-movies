@@ -1,0 +1,11 @@
+dependencies {
+    implementation project(':model')
+    implementation project(':usecase')
+
+    compileOnly 'org.springframework:spring-context'
+    compileOnly 'org.springframework.boot:spring-boot-starter-webflux'
+    implementation 'com.github.javafaker:javafaker:1.0.2'
+
+    testImplementation 'org.springframework:spring-context'
+    testImplementation 'org.springframework.boot:spring-boot-starter-webflux'
+}
